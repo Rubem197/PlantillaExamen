@@ -1,35 +1,53 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+
 public class clsConexion {
-    private SessionFactory sessionFactory;
+    private  static SessionFactory sessionFactory;
 
-    public clsConexion(){
-        setUp();
+    private static Transaction transaction;
+    private static Session session;
+
+
+    public static Transaction abrirTransaccion(){
+
+        return  transaction = session.beginTransaction();
     }
 
-    public Session iniciarConexion(){
-        return sessionFactory.openSession();
+    public static void commit(){
+
+        transaction.commit();
     }
 
+    public static void rollback(){
+        transaction.rollback();
+    }
 
-    public void cerrarConexion(){
+    public static Session abrirConexion(){
+
+        return session = sessionFactory.openSession();
+    }
+
+    public static void cerrarConexion(){
+
         sessionFactory.close();
     }
 
 
-    protected void setUp() {
+    public static void setUp() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure()
+                .configure() // por defecto: hibernate.cfg.xml
                 .build();
         try {
             sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
         }
         catch (Exception e) {
-            StandardServiceRegistryBuilder.destroy( registry );
+
+            e.printStackTrace();
         }
     }
 }
