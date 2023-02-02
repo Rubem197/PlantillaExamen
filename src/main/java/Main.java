@@ -1,6 +1,5 @@
 import org.hibernate.Session;
 
-import javax.transaction.Transaction;
 import java.util.Scanner;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -20,22 +19,11 @@ public class Main {
         int opc =1;
         while (opc != 0) {
             System.out.println("-----Menu-----");
-            System.out.println("Opc 1 borrar Usuario");
-            System.out.println("Opc 2 guardar Usuario");
-            System.out.println("Opc 3 actualizar Usuario");
-            System.out.println("Opc 4 leer Usuario");
-            System.out.println("Opc 5 borrar Post");
-            System.out.println("Opc 6 guardar Post");
-            System.out.println("Opc 7 actualizar Post");
-            System.out.println("Opc 8 leer Post");
-            System.out.println("Opc 9 borrar Likes");
-            System.out.println("Opc 10 guardar Likes");
-            System.out.println("Opc 11 actualizar Likes");
-            System.out.println("Opc 12 leer Likes");
+            System.out.println("Opc 1 insertar Nave");
             opc = sc.nextInt();
             switch (opc) {
                 case 1:
-
+                    insertarNaves("Ruben", "Calle islas baleares N34");
                     break;
                 case 2:
 
