@@ -3,6 +3,11 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="listaNaves", query="select a from NavesEntity a"),
+        @NamedQuery(name = "numeroNaves", query = "select count(a) from NavesEntity a"),
+        @NamedQuery(name="ListarPorNombre", query="select a from NavesEntity a where a.ganadero=:ganadero")
+})
 @Table(name = "VQ_Naves")
 public class NavesEntity implements Serializable {
     @Id
